@@ -9,7 +9,6 @@ import subprocess
 
 SYSTEM_PLATFORM = sys.platform
 SYSTEM_ARCH = platform.machine()
-SYSTEM_RELEASE = platform.release()
 PYTHON_VERSION = sys.version
 ALERT_LOGIC_KEY = sys.argv[1]
 ALERT_LOGIC_APPLIANCE = sys.argv[2]
@@ -52,12 +51,6 @@ if re.match('.86_64', SYSTEM_ARCH):
 else:
     print SYSTEM_ARCH, "dose not match anything compatible"
     exit(102)
-
-if re.search('amzn', SYSTEM_RELEASE):
-    pass
-else:
-    print "Not compatible linux Distro we only support Amazon Linux"
-    exit(103)
 
     ## After Enviroment configed. Grabbing and installing agent
 DOWNLOAD_FILE = urllib2.urlopen(ALERT_LOGIC_RPM_URL)
