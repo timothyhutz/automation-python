@@ -20,7 +20,7 @@ if re.match(r".*", ALERT_LOGIC_KEY):
 else:
     print "Please enter your Alert Logic Key as the first paramater"
     exit(105)
-if re.match(r"^(\d{1,9})\.(\d{1,9})\.(\d{1,9})\.(\d{1,9})$", ALERT_LOGIC_APPLIANCE):
+if re.match(r"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$", ALERT_LOGIC_APPLIANCE):
     pass
 else:
     print "Alert Logic Appliance IP addres does not appeard to be entered  correctly"
