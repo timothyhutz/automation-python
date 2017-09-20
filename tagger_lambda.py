@@ -1,7 +1,19 @@
 import boto3
 
+#Set Params here.
+region=None
+profile=None
+vpc=None
+owner_tag=None
+print()
 
+if region and profile and vpc and owner_tag is not None:
+	creds = boto3.Session(profile_name=profile)
+else:
+	print("missing paramaters")
+	exit(1)
 
+#All Classes build here
 class Tag_Create(object):
 	def vpc_create_tag(region=None, profile=None, vpcid=None, owner_tag=None):
 		creds = boto3.Session(profile_name=profile)
@@ -24,10 +36,6 @@ class Tag_Create(object):
 		return ec2_call.create_tags(Resources=sg, Tags=[{'Key': 'Owner', 'Value': owner_tag}])
 
 class Lookup(object):
-	def vpclookup(creds, region=None):
-		ec2_call = creds.client('ec2', region_name=region)
-		return ec2_call.describe_vpcs()
-
 	def subnetlookup(creds, region=None, vpcid=None):
 		ec2_call = creds.client('ec2', region_name=region)
 		return ec2_call.describe_subnets(Filters=[{"Name": "vpc-id", "Values": ["{0}".format(vpcid)]}])
@@ -40,30 +48,6 @@ class Lookup(object):
 		ec2_call = creds.client('ec2', region_name=region)
 		return ec2_call.describe_security_groups(Filters=[{"Name": "vpc-id", "Values": ["{0}".format(vpcid)]}])
 
-
-
-
-region = input("Region? Press any key to skip. Will use default config: ")
-profile = input("Profile? Press any key to skip. Will use default config: ")
-creds = boto3.Session(profile_name=profile)
-
-#search VPC's and print out list for your selection.
-vpc_list = Lookup.vpclookup(creds=creds, region=region)
-for item in vpc_list['Vpcs']:
-	try:
-		for list_item in item['Tags']:
-			print(list_item)
-	except:
-		print("No Tags found in this Region's VPCs")
-		pass
-	print(item['VpcId'] + "\t" + item['CidrBlock'])
-	print("\r")
-
-# Input Selectors
-vpc = input("What VPC ID are you working with: ")
-print("\r")
-owner_tag = input("Give the name of your department: ")
-print("\r")
 
 # Start the Process of taggging the main VPC
 print("Found the following VPC and tagging it", vpc)

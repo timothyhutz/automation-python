@@ -1,6 +1,14 @@
 # automation-python
 Collection of my AWS automation work with python only.
 
+09/20/2017
+Added Tagger, This is a AWS tag creator for declaring ownership. Will create tags of Owner: <data inputed> for ALL AWS EC2 based objects attached to the set VPC. There is a Local
+operated version called tagger.py desiged to run on your local system. The other version is called tagger_lambda.py, this version runs with limited console output for AWS Lambda FAAS.
+
+if your running lambda version you will need to fill out three paramaters. 
+Profile
+Region
+VPC-Id
 
 06/29/2017
 Currently have two pieces of work auth0-testusersload.py --> This is designed to "signup" users."number"@email.com into your database for loadtesting or whatever.
