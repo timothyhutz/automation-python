@@ -2,15 +2,19 @@
 the intention of this code is to be used with Lambda but can be customized with any
 serverless architecture"""
 
-import logging
-logging.basicConfig()
 import pip
+import logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 try:
-	import pygithub
+	import github
 except ImportError:
 	pip.main(['install', 'pygithub'])
-	logging.info('pygithub was not in python3.6 modules, it was added so can use it')
+	logging.info('pygithub was not in python3.6 modules, it was added so you can use it')
 	import github
+except Exception as message:
+	logger.debug(message)
 
 def main(event, context):
-	repo_list = event['repos']
+	repolist = event['repos']
+	git_session = github.Github(login_or_token=event['username'], password=event['password'])
