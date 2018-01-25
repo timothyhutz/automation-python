@@ -3,7 +3,6 @@ the intention of this code is to be used with Lambda but can be customized with 
 serverless architecture"""
 
 import pip
-import json
 import logging
 logger=logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -16,12 +15,13 @@ except ImportError:
 except Exception as message:
 	logger.error(message)
 
+
 def main(event, context):
 	repolist = event['repos']
 	reporesults = {}
 	logger.info(print(repolist))
-	git_session = logger.info(github.Github(login_or_token=event['username'], password=event['password']))
+	git_session = logger.info(github.Github(login_or_token=event['token']))
 	for repo in repolist:
-		repodata = json.loads(git_session.get_repo(full_name_or_id=repo))
-		reporesults[repo]=repodata['']
+		repodata = git_session.get_repo(full_name_or_id=repo).private
+		reporesults[repo]=repodata
 	return reporesults
