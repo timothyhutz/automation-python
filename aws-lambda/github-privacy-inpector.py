@@ -3,6 +3,7 @@ the intention of this code is to be used with Lambda but can be customized with 
 serverless architecture"""
 
 import pip
+import json
 import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -17,4 +18,8 @@ except Exception as message:
 
 def main(event, context):
 	repolist = event['repos']
-	git_session = github.Github(login_or_token=event['username'], password=event['password'])
+	logger.info(print(repolist))
+	git_session = logger.info(github.Github(login_or_token=event['username'], password=event['password']))
+	for repo in repolist:
+		repodata = json.loads(git_session.get_repo(full_name_or_id=repo))
+
