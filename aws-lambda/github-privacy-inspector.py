@@ -17,11 +17,14 @@ except Exception as message:
 
 
 def main(event, context):
-	repolist = event['repos']
 	reporesults = {}
-	logger.info(print(repolist))
-	git_session = logger.info(github.Github(login_or_token=event['token']))
-	for repo in repolist:
-		repodata = git_session.get_repo(full_name_or_id=repo).private
-		reporesults[repo]=repodata
+	logger.info(event['repos'])
+	try:
+		git_session = github.Github(login_or_token=event['token'])
+	except Exception as message:
+		logger.error(message)
+		exit(1)
+	for repo in event['repos']:
+		repobool = git_session.get_repo(full_name_or_id=repo).private
+		reporesults[repo]=repobool
 	return reporesults
