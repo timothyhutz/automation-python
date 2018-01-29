@@ -20,6 +20,20 @@ https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-lam
 You will need to setup API token in github security settings and you will need to have
 permissions to the Repos you want to lookup.
 
+<h2> Pygithub module packaging </h2>
+
+Since lambda only include the core modules and boto3, you will need to package up
+the pygithub module and this piece of code into a zip file for upload..
+This is called building a deployment package. If you don't do this you will get a 
+failure on the import statement for github.
+
+Here is the aws instructions on building deployment packges for lambda pyhton function with 
+third party modules(libraries).
+
+https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html
+
+
+
 <h3>Usage after APIgateway setup</h3>
 
 The event stream will pass a json body to the main handler.
