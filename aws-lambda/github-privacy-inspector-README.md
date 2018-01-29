@@ -13,7 +13,7 @@ timothyhutz/automation-python
 
 Setting up a APIGateway with a GET method attached on the lambda
 function will be required. This will need to be a application/json context.
-Please follow this documentation to setup your Lambda APIgateway
+Please follow this documentation to setup your APIgateway for this Lambda function.
 https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-lambda-non-proxy-integration.html
 
 
@@ -23,7 +23,7 @@ permissions to the Repos you want to lookup.
 <h3>Usage after APIgateway setup</h3>
 
 The event stream will pass a json body to the main handler.
-the only two thing that should be passed via a GET method are
+the only two things that should be passed via a GET method are
 
 Github API token which is a JSON string..
 
