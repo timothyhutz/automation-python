@@ -2,18 +2,10 @@
 the intention of this code is to be used with Lambda but can be customized with any
 serverless architecture"""
 
-import pip
 import logging
 logger=logging.getLogger()
 logger.setLevel(logging.INFO)
-try:
-	import github
-except ImportError:
-	pip.main(['install', 'pygithub'])
-	logging.info('pygithub was not in python3.6 modules, it was added so you can use it')
-	import github
-except Exception as message:
-	logger.error(message)
+import github
 
 
 def main(event, context):
