@@ -1,7 +1,7 @@
 <h1> Setup and use </h1>
 <p> Github-privacy-inspector </p>
 
-This piece of code is designed only to work with AWS lambda and API gate way.
+This piece of code is designed only to work with AWS lambda and AWS APIgate way.
 Its is designed to test the repo name against whether it is setup
 as a private repo or open to the public..
 
@@ -41,13 +41,13 @@ Example....
 
 }
 
-Here is the reposone you should get which should be a 200,
+Here is the repose you should get which should be a 200,
 True means it is private..
 
 {
 
 	"REPO NAME": true,
 	"REPO NAME": true,
-	"REPO NAME": true,
+	"REPO NAME": true
 
 }
