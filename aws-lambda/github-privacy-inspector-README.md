@@ -52,7 +52,6 @@ Example....
         "<repo>",
         "<repo>"
     ]
-
 }
 
 Here is the repose you should get which should be a 200,
@@ -63,5 +62,4 @@ True means it is private..
 	"REPO NAME": true,
 	"REPO NAME": true,
 	"REPO NAME": true
-
 }

@@ -1,7 +1,12 @@
 # automation-python
 Collection of my AWS automation work with python only.
 
-09/20/2017 --> Current <br>
+01/29/2018 --> current <br>
+Added aws-lambda folder with a github privacy inspector piece. \
+every lambda script will get its own MarkDown README to show what I did
+and how I set it up and / or how to build it.. 
+
+09/20/2017<br>
 Added Tagger, This is a AWS tag creator for declaring ownership. Will create tags of Owner: "data inputed" for ALL AWS EC2 based objects attached to the set VPC. There is a Local
 operated version called tagger.py desiged to run on your local system. The other version is called tagger_lambda.py, this version runs with limited console output for AWS Lambda FAAS.
 
