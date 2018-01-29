@@ -34,7 +34,7 @@ https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deploym
 
 
 
-<h3>Usage after APIgateway setup</h3>
+<h3>Usage after APIgateway and creating buildpackage setup</h3>
 
 The event stream will pass a json body to the main handler.
 the only two things that should be passed via a GET method are
