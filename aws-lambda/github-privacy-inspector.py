@@ -8,7 +8,7 @@ logger.setLevel(logging.INFO)
 import github
 
 
-def main(event, context):
+def main(event):
 	reporesults = {}
 	logger.info(event['repos'])
 	try:
