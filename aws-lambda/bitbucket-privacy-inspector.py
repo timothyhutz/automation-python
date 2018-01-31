@@ -28,14 +28,13 @@ def main(event, context):
 					'repo': repo['name']
 				}
 			)
-			## Checking for data return..
 			try:
-				response['Item']
-				db_data_return = response['Item']
-				if bool(db_data_return['private']) is not bool(repo['private']):
+				response['Item'] ## Checking for data return..
+				db_data_return = response['Item'] ## setting DB data return for each loop iterations to interact with...
+				if bool(db_data_return['private']) is not bool(repo['private']): ## comparing current iteration call from API with DB stored data for non-match indicates change
 					print('chage detected')
 				else:
-					print("no change detected")
+					print("no change detected") ## Do nothing when matching
 			## exception handeler for Key error (which means does not exist) then put data in table.
 			except KeyError:
 				logger.info(repo['name'] + ' not found adding to DB')
