@@ -8,7 +8,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
-def main(event):
+def main(event, context):
 	#setting the DB info
 	dynamodb = boto3.resource('dynamodb')
 	dbtable = dynamodb.Table('bitbucket_data')
@@ -22,16 +22,21 @@ def main(event):
 	for page_num in page_range:
 		call = requests.get(api_url + '/repos?start={}'.format(page_num), auth=(event['username'], event['password'])).json()
 		for repo in call['values']:
-			logger.info(repo)
 			##DB lookup check to see if it exist
 			response = dbtable.get_item(
 				Key={
 					'repo': repo['name']
 				}
 			)
-			## if Key error (which means does not exist) then put data in table.
+			## Checking for data return..
 			try:
 				response['Item']
+				db_data_return = response['Item']
+				if bool(db_data_return['private']) is not bool(repo['private']):
+					print('chage detected')
+				else:
+					print("no change detected")
+			## exception handeler for Key error (which means does not exist) then put data in table.
 			except KeyError:
 				logger.info(repo['name'] + ' not found adding to DB')
 				dbtable.put_item(
@@ -40,6 +45,8 @@ def main(event):
 						'public': bool(repo['public'])
 					}
 				)
+			except Exception as message:
+				logger.error(message)
 			## If we hit the last page end the loop for appending to pagestart value.
 		if call['isLastPage'] is False:
 				page_range.append(call['nextPageStart'])
