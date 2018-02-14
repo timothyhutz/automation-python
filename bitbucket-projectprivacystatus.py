@@ -19,7 +19,7 @@ class Repodata(object):
 			for repo in call['values']:
 				# sets only the data I need, repo name and public status
 				self.repodata[repo['name']]=repo['public']
-				# writes out the CVS file
+				# writes out the CSV file
 				with open('data.csv', 'w') as csvfile:
 					fieldnames = ['repo name', 'public']
 					writer = csv.DictWriter(csvfile, fieldnames)
