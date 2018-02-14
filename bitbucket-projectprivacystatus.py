@@ -3,7 +3,7 @@ import csv
 import sys
 
 # Primary work data class that's callable if used in module format.
-class Repodata(object):
+class Repodata_Bitbucket(object):
 	# initializes variables to zero and sets the proper project URL
 	def __init__(self):
 		self.api_url = 'https://' + domain + '/rest/api/1.0/projects/' + project_key
@@ -44,5 +44,5 @@ if __name__ == '__main__':
 	project_key = args['project_key']
 	username = args['username']
 	password = args['password']
-	Repodata().main()
+	Repodata_bitbucket().main()
 
