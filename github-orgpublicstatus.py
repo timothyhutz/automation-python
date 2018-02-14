@@ -34,10 +34,10 @@ except Exception as message:
 	exit(1)
 
 repolistbuild(org)
-main(repolist)
+returndata = main(repolist)
 with open('data.csv', 'w') as csvfile:
 	fieldnames = ['repo', 'private']
 	writer = csv.DictWriter(csvfile, fieldnames)
 	writer.writeheader()
-	for key, value in repolist.items():
+	for key, value in returndata.items():
 		writer.writerow({'repo': key, 'private': value})
