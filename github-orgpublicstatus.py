@@ -3,6 +3,7 @@ Purpose of this python script is to use the github API to check public status of
 
 import github
 import sys
+import csv
 
 # This is the main that loads each repo private status True or False Boolen
 def main(repolist):
@@ -32,6 +33,11 @@ except Exception as message:
 	print(message)
 	exit(1)
 
-
 repolistbuild(org)
-print(main(repolist))
+main(repolist)
+with open('data.csv', 'w') as csvfile:
+	fieldnames = ['repo', 'private']
+	writer = csv.DictWriter(csvfile, fieldnames)
+	writer.writeheader()
+	for key, value in repolist.items():
+		writer.writerow({'repo': key, 'private': value})
