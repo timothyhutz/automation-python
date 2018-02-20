@@ -39,7 +39,7 @@ if __name__ == '__main__':
     returndata = Repodata_Github().main()
 
     with open('data.csv', 'w') as csvfile:
-        fieldnames = ['repo name', 'private']
+        fieldnames = ['repo name', 'private', 'Public/Private Release Sign Off']
         writer = csv.DictWriter(csvfile, fieldnames)
         writer.writeheader()
         for key, value in returndata.items():
